@@ -9,7 +9,6 @@ from sendgrid.helpers.mail import Mail
 def main(msg: func.ServiceBusMessage):
     notification_id = msg.get_body().decode('utf-8')
     logging.info('Python ServiceBus queue trigger processed message: %s',notification_id)
-    # TODO: Get connection to database
     try:
         url = os.environ['DbConnection']
         strs = url.replace('\'', '').split(' ')
@@ -55,13 +54,6 @@ def main(msg: func.ServiceBusMessage):
             send_email(email, subject, notification_message)
             logging.info('Email has been sent to {} for attendee {}'.format(email, first_name))
         
-        # TODO: Get notification message and subject from database using the notification_id
-
-        # TODO: Get attendees email and name
-
-        # TODO: Loop through each attendee and send an email with a personalized subject
-
-        # TODO: Update the notification table by setting the completed date and updating the status with the total number of attendees notified
         status = 'Notified {attendeeCount} attendees'.format(attendeeCount = str(count))
         cursor.execute('UPDATE public.notification SET status=%s, completed_date=%s WHERE id = %s', (status, datetime.datetime.now(), notification_id))
 
