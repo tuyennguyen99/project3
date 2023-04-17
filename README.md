@@ -19,15 +19,15 @@ The TechConf website is a simple website, simple feature and small datasets.
 - The app service's Free tier and basic plan of Azure Postgres database already suitable with the TechConf website.
 The pain point of TechConf website has been resolved with Azure Function - ServiceBusQueueTrigger and Service bus
 - Migrating from the normal http request sending email and updating notification to the Azure service bus has resolved the HTTP timeout issue.
-- Implementing, setting up, deloying azure function, the service bus doesn't take too much effort. We can manage all the resource in the portal with useful tools provided by Microsoft (Cost Analysis, Budget alert, Monitoring, etc.). All those setting up actions below is completed within 2 hours.
-- Setting up Azure Postgres Database:
-   1. Create Azure Postgres Database
-   2. Connect to server and create techconfdb
-   3. Restore data into techconfdb
+- Implementing, setting up, deloying azure function, the service bus doesn't take too much effort. We can manage all the resource in the portal with useful tools provided by Microsoft (Cost Analysis, Budget alert, Monitoring, Automate deployment, etc.). All those setting up actions is completed within 2 hours.
+- Azure functions is a serverless solution, so we don't need to write more code and just focus on the logic. In the Techconf app, we use ServiceBusQueueTrigger, we just need to implement the logic to update the notification and send email to all attendees. Azure service bus will handle other related works.
+- Azure service bus help to decouple applications and services from each other as a message broker. In Techconf app, using Azure service bus help to move the long time process logic (send email to all attendees and update notification status) out of HTTP request to avoid HTTP timeout. 
+For each HTTP request to submit notification, 1 message will be sent and service bus will take that message and process the logic by the connected ServiceBusQueueTrigger.
+
 - Setting up Service bus:
    1. Create Service Bus namespace in azure portal.
    2. Create queue in service bus namespace.
-- Implementing, deploying ServiceBusQueueTrigger just take a few steps: 
+- Implementing, deploying Azure function ServiceBusQueueTrigger just take a few steps.
    1. Create azure function ServiceBusQueueTrigger
    2. Implement code logic for ServiceBusQueueTrigger
    3. User azure tools, azure cli or CI/CD to deploy function.
