@@ -5,11 +5,11 @@ Location: East Asia
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |Basic, Gen5 Compute Generation. 1 vCores with 5GB memory selected = $2.07. Storage: 16GB x 1 Databases x $0.345/GB/month = $5.52    | $7.59              |
-| *Azure Service Bus*   | Basic        | $0             |
+| *Azure Postgres Database* |Basic, Gen5 Compute Generation. Cost per vCore = $47.38 + (Cost per GB/month = $0.14) x 5GB selected    | $48.07              |
+| *Azure Service Bus*   | Basic ~0.05$/1M operations/month       | $0             |
 | Azure Web App         | Linux OS Free tier        | $0             |
 | Azure Functions App   | Consumption        | $0             |
-| Total                   |         | $7.59              | 
+| Total                   |         | $48.07              | 
 
 
 ## Architecture Explanation
