@@ -1,0 +1,4 @@
+psycopg2-binary
+azure-functions
+python-http-client==3.3.7
+sendgrid==6.3.0
